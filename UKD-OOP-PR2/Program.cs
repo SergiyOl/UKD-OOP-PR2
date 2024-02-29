@@ -7,12 +7,6 @@ namespace UKD_OOP_PR2
     {
         static void Main(string[] args)
         {
-            List<string> o = new();
-            o.Add("hi");
-            Console.WriteLine(o.Find(x => x == "hi"));
-            Console.WriteLine(o.Find(x => x == "hi") == null);
-            Console.WriteLine(o.Find(x => x == "hello") == null);
-
             //Створення бази даних
             PersonDataBase dataBase = new();
             //Запис мов
@@ -44,12 +38,15 @@ namespace UKD_OOP_PR2
             joshPhones.Add(new Phone("+0996782364", "Vodaphone", 120));
             List<Phone> vasilPhones = new();
             vasilPhones.Add(new Phone("+0651396513", "Kyivstar", 150));
-            //Запис фінансів
-
             //Створення анкет
             dataBase.AddPerson(new Person("Oleg", olegLang, olegHobby, new Contacts(olegEmails, olegPhones)));
             dataBase.AddPerson(new Person("Josh", joshLang, joshHobby, new Contacts(joshEmails, joshPhones)));
             dataBase.AddPerson(new Person("Vasil", vasilLang, vasilHobby, new Contacts(vasilEmails, vasilPhones)));
+            //Запис фінансів
+            dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.addFinancialArticle("Programing courses", 1200, new DateTime(2024, 3, 4));
+            dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.addFinancialArticle("Games", 270.40, new DateTime(2024, 3, 15));
+            dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.addFinancialArticle("English courses", 1200, new DateTime(2024, 4, 1));
+            dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.addFinancialArticle("Bus ticket", 65, new DateTime(2024, 4, 5));
             //Виведення в консоль
             foreach (Person item in dataBase.allPerson)
             {
@@ -61,12 +58,13 @@ namespace UKD_OOP_PR2
             }
             Console.WriteLine(dataBase.SpecificLanguageUsage("English"));
             Console.WriteLine(dataBase.SpecificLanguageLevelUsage("English", "B1"));
-            /* Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").contactInfo.MinMaxPhoneCost(true));*/
+            /*Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").contactInfo.MinMaxPhoneCost(true));*/
 
             foreach (var item in dataBase.MinMaxMultiplePersonPhoneCost(2, true))
             {
                 Console.WriteLine(item.name);
             }
+            Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.CalculateSpentMoneyPerMonth(3, 2024));
 
             Console.ReadLine();
         }
