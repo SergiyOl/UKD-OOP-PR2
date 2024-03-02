@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>UKD_OOP_PR2</RootNamespace>
+    <AssemblyName>UKD-OOP-PR2</AssemblyName>
   </PropertyGroup>
 
 </Project>
