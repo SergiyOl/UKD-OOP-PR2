@@ -17,12 +17,14 @@ namespace UKD_OOP_PR2
             phoneNumbers = _phoneNumbers;
         }
 
-        public int MinMaxPhoneCost(bool isMax)
+        public int SummaryPhoneCost()
         {
-            if (isMax)
-                return phoneNumbers.OrderBy(x => x.costPerMonth).ToList().Last().costPerMonth;
-            else
-                return phoneNumbers.OrderBy(x => x.costPerMonth).ToList().First().costPerMonth;
+            int cost = 0;
+            foreach(var item in phoneNumbers)
+            {
+                cost += item.costPerMonth;
+            }
+            return (cost);
         }
     }
 }

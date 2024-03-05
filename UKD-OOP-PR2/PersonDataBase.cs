@@ -92,9 +92,9 @@ namespace UKD_OOP_PR2
         {
             List<Person> sortedPersonList;
             if (isMax)
-                sortedPersonList = allPerson.OrderByDescending(x => x.contactInfo.MinMaxPhoneCost(isMax)).ToList();
+                sortedPersonList = allPerson.OrderByDescending(x => x.contactInfo.SummaryPhoneCost()).ToList();
             else
-                sortedPersonList = allPerson.OrderBy(x => x.contactInfo.MinMaxPhoneCost(isMax)).ToList();
+                sortedPersonList = allPerson.OrderBy(x => x.contactInfo.SummaryPhoneCost()).ToList();
 
             if (sortedPersonList.Count > personAmount)
             {

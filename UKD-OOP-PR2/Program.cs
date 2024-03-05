@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UKD_OOP_PR2
 {
@@ -112,9 +113,7 @@ namespace UKD_OOP_PR2
             Console.WriteLine(dataBase.SpecificLanguageLevelUsage("Japanese", "B1"));
 
             Console.WriteLine("PersonPhoneCost (Oleg) (isMax = true):");
-            Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").contactInfo.MinMaxPhoneCost(true));
-            Console.WriteLine("PersonPhoneCost (Oleg) (isMax = false):");
-            Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").contactInfo.MinMaxPhoneCost(false));
+            Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").contactInfo.SummaryPhoneCost());
 
             Console.WriteLine("MinMaxMultiplePersonPhoneCost (2, true):");
             foreach (var item in dataBase.MinMaxMultiplePersonPhoneCost(2, true))
