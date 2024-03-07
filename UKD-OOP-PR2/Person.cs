@@ -14,6 +14,7 @@ namespace UKD_OOP_PR2
         public List<Hobby> hobbies = new();
         public Contacts contactInfo;  
         public Finance financialInfo = new();
+        public string assignedCourseWork;
 
 
         public Person(string _name, List<Language> _languages, List<Hobby> _hobbies, Contacts _contactInfo)

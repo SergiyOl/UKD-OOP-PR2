@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace UKD_OOP_PR2
 {
@@ -137,6 +138,14 @@ namespace UKD_OOP_PR2
             Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.CalculateSpentMoneyPerMonth(4, 2024));
             Console.WriteLine("CalculateSpentMoneyPerMonth (5, 2024):");
             Console.WriteLine(dataBase.allPerson.Find(x => x.name == "Oleg").financialInfo.CalculateSpentMoneyPerMonth(5, 2024));
+
+            //Присвоєння студентам курсовиі роботи
+            dataBase.RandomAssignCouseWork(@"..\..\..\AllCourseWork.txt");
+            foreach (var item in dataBase.allPerson)
+            {
+                Console.WriteLine(item.name);
+                Console.WriteLine(item.assignedCourseWork);
+            }
 
             Console.ReadLine();
         }

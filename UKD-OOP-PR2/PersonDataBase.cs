@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace UKD_OOP_PR2
 {
@@ -101,6 +102,55 @@ namespace UKD_OOP_PR2
                 sortedPersonList.RemoveRange(personAmount, sortedPersonList.Count - personAmount);
             }
             return sortedPersonList; 
+        }
+
+        public void RandomAssignCouseWork(string filePath)
+        {
+            Random rnd = new Random();
+            List<string> courseWorkList = File.ReadAllLines(filePath).ToList();
+            List<string> personList = new();
+            foreach (var item in allPerson)
+            {
+                personList.Add(item.name);
+            }
+            Console.WriteLine("Введіть символ + щоб присвоїти випадкову курсову роботу випадковому студенту (введіть - щоб припинити присвоєння)");
+            while (courseWorkList.Count != 0 && personList.Count != 0)
+            {
+                string input = Console.ReadLine();
+                if (input == "+")
+                {
+                    int rndPersonId = rnd.Next(0, personList.Count);
+                    int rndConrseWorkId = rnd.Next(0, courseWorkList.Count);
+                    allPerson.Find(x => x.name == personList[rndPersonId]).assignedCourseWork = courseWorkList[rndConrseWorkId];
+                    Console.WriteLine($"Студенту {personList[rndPersonId]} присвоєна курсова робота {courseWorkList[rndConrseWorkId]}");
+                    personList.RemoveAt(rndPersonId);
+                    courseWorkList.RemoveAt(rndConrseWorkId);
+                }
+                else if (input == "-")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Введено неправилний символ");
+                }
+            }
+            if (personList.Count != 0)
+            {
+                string message = "Даним студентам не була присвоєна курсова робота: ";
+                foreach (var item in personList)
+                {
+                    if (personList.First() == item)
+                    {
+                        message += item;
+                    }
+                    else
+                    {
+                        message += $", {item}";
+                    }
+                }
+                Console.WriteLine(message);
+            }
         }
     }
 }
