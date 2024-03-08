@@ -122,7 +122,7 @@ namespace UKD_OOP_PR2
                     int rndPersonId = rnd.Next(0, personList.Count);
                     int rndConrseWorkId = rnd.Next(0, courseWorkList.Count);
                     allPerson.Find(x => x.name == personList[rndPersonId]).assignedCourseWork = courseWorkList[rndConrseWorkId];
-                    Console.WriteLine($"Студенту {personList[rndPersonId]} присвоєна курсова робота {courseWorkList[rndConrseWorkId]}");
+                    Console.WriteLine($"Студенту {personList[rndPersonId]} присвоєна курсова робота {courseWorkList[rndConrseWorkId]}, залишилось кусових робіт: {courseWorkList.Count - 1}, та студентів: {personList.Count - 1}");
                     personList.RemoveAt(rndPersonId);
                     courseWorkList.RemoveAt(rndConrseWorkId);
                 }
@@ -137,7 +137,7 @@ namespace UKD_OOP_PR2
             }
             if (personList.Count != 0)
             {
-                string message = "Даним студентам не була присвоєна курсова робота: ";
+                string message = $"Даним студентам не була присвоєна курсова робота: ({personList.Count}) ";
                 foreach (var item in personList)
                 {
                     if (personList.First() == item)
@@ -155,7 +155,7 @@ namespace UKD_OOP_PR2
         
         public void CreateTxtFileWithCouseWorkAssignments(string filePath)
         {
-            string text = "Студенти яким присвоєні курсові роботи:\n\r";
+            string text = "Студенти яким присвоєні курсові роботи:\n";
             List<string> notAssigned = new();
             foreach(var item in allPerson)
             {
@@ -165,15 +165,15 @@ namespace UKD_OOP_PR2
                 }
                 else
                 {
-                    text += $"{item.name} => {item.assignedCourseWork}\n\r";
+                    text += $"{item.name} => {item.assignedCourseWork}\n";
                 }
             }
             if (notAssigned.Count != 0)
             {
-                text += "Студенти яким не було присвоєно робіт:\n\r";
+                text += "\nСтуденти яким не було присвоєно робіт:\n";
                 foreach (var item in notAssigned)
                 {
-                    text += $"{item}\n\r";
+                    text += $"{item}\n";
                 }
             }
             File.WriteAllText(filePath, text);
