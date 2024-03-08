@@ -147,6 +147,8 @@ namespace UKD_OOP_PR2
                 Console.WriteLine(item.assignedCourseWork);
             }
 
+            dataBase.CreateTxtFileWithCouseWorkAssignments(@"..\..\..\AssignedCourseWork.txt");
+
             Console.ReadLine();
         }
     }

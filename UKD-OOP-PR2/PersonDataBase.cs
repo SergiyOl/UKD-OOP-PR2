@@ -152,5 +152,32 @@ namespace UKD_OOP_PR2
                 Console.WriteLine(message);
             }
         }
+        
+        public void CreateTxtFileWithCouseWorkAssignments(string filePath)
+        {
+            string text = "Студенти яким присвоєні курсові роботи:\n\r";
+            List<string> notAssigned = new();
+            foreach(var item in allPerson)
+            {
+                if (item.assignedCourseWork == null)
+                {
+                    notAssigned.Add(item.name);
+                }
+                else
+                {
+                    text += $"{item.name} => {item.assignedCourseWork}\n\r";
+                }
+            }
+            if (notAssigned.Count != 0)
+            {
+                text += "Студенти яким не було присвоєно робіт:\n\r";
+                foreach (var item in notAssigned)
+                {
+                    text += $"{item}\n\r";
+                }
+            }
+            File.WriteAllText(filePath, text);
+            Console.WriteLine("Файл створено");
+        }
     }
 }
